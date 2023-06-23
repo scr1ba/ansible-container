@@ -1,0 +1,9 @@
+# https://github.com/abiosoft/colima/issues/500#issuecomment-1343103477
+version: '3.9'
+services:
+  ansible:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - './ansible:/ansible'
