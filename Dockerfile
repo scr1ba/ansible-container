@@ -6,6 +6,10 @@ RUN apk add --no-cache openssl ca-certificates openssh-client \
 
 WORKDIR /ansible
 
+COPY ansible/ansible.cfg /ansible/ansible.cfg
+COPY ansible/playbook.yml /ansible/playbook.yml
+COPY ansible/inventory.ini /ansible/inventory.ini
+
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 RUN chmod +x /usr/local/bin/docker-entrypoint
 
