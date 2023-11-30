@@ -19,13 +19,19 @@ IFS="$OLD_IFS"
 
 echo "Inventory generated at /ansible/inventory.ini with hosts: $TARGET_HOSTS"
 
+# Check if the SSH_KEY_PATH environment variable is set
+if [ -z "$SSH_KEY_PATH" ]; then
+    echo "Error: SSH_KEY_PATH environment variable is not set."
+    exit 1
+fi
+
 # Check if SSH key file exists and set correct permissions
-SSH_KEY="/root/.ssh/privkey"
-if [ -f "$SSH_KEY" ]; then
-    echo "SSH key found at $SSH_KEY, setting correct permissions..."
-    chmod 600 "$SSH_KEY"
+#SSH_KEY_PATH="/root/.ssh/privkey"
+if [ -f "$SSH_KEY_PATH" ]; then
+    echo "SSH key found at $SSH_KEY_PATH, setting correct permissions..."
+    chmod 600 "$SSH_KEY_PATH"
 else
-    echo "No SSH key found at $SSH_KEY"
+    echo "No SSH key found at $SSH_KEY_PATH"
 fi
 
 # Run Ansible Playbook
