@@ -25,19 +25,23 @@ if [ -z "$SSH_KEY_PATH" ]; then
     exit 1
 fi
 
-# Check if SSH key file exists and set correct permissions
-# Debug: List /root/.ssh directory
-echo "Listing /root/.ssh directory:"
-ls -l /root/.ssh
-ls -l $SSH_KEY_PATH
-
-#SSH_KEY_PATH="/root/.ssh/privkey"
+# Debugging: Check if SSH_KEY_PATH is a file, directory, or non-existent
+echo "Checking if $SSH_KEY_PATH is a file, a directory, or non-existent"
 if [ -f "$SSH_KEY_PATH" ]; then
+    echo "$SSH_KEY_PATH is a regular file."
     echo "SSH key found at $SSH_KEY_PATH, setting correct permissions..."
     chmod 600 "$SSH_KEY_PATH"
+elif [ -d "$SSH_KEY_PATH" ]; then
+    echo "$SSH_KEY_PATH is a directory."
 else
-    echo "No SSH key found at $SSH_KEY_PATH"
+    echo "$SSH_KEY_PATH does not exist."
 fi
+
+# Additional Debugging: List /root/.ssh directory and SSH_KEY_PATH
+echo "Listing /root/.ssh directory:"
+ls -l /root/.ssh
+echo "Listing $SSH_KEY_PATH:"
+ls -l $SSH_KEY_PATH
 
 # Run Ansible Playbook
 # "$@" allows to pass additional arguments to ansible-playbook
