@@ -19,6 +19,15 @@ IFS="$OLD_IFS"
 
 echo "Inventory generated at /ansible/inventory.ini with hosts: $TARGET_HOSTS"
 
+# Check if SSH key file exists and set correct permissions
+SSH_KEY="/root/.ssh/privkey"
+if [ -f "$SSH_KEY" ]; then
+    echo "SSH key found at $SSH_KEY, setting correct permissions..."
+    chmod 600 "$SSH_KEY"
+else
+    echo "No SSH key found at $SSH_KEY"
+fi
+
 # Run Ansible Playbook
 # "$@" allows to pass additional arguments to ansible-playbook
 ansible-playbook -i /ansible/inventory.ini "$@"
