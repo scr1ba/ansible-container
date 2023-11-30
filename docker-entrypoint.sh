@@ -39,9 +39,10 @@ fi
 
 # Additional Debugging: List /root/.ssh directory and SSH_KEY_PATH
 echo "Listing /root/.ssh directory:"
-ls -l /root/.ssh
+ls -lha /root/.ssh
+
 echo "Listing $SSH_KEY_PATH:"
-ls -l $SSH_KEY_PATH
+ls -lha $SSH_KEY_PATH
 
 # Run Ansible Playbook
 # "$@" allows to pass additional arguments to ansible-playbook
