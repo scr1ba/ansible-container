@@ -26,6 +26,11 @@ if [ -z "$SSH_KEY_PATH" ]; then
 fi
 
 # Check if SSH key file exists and set correct permissions
+# Debug: List /root/.ssh directory
+echo "Listing /root/.ssh directory:"
+ls -l /root/.ssh
+ls -l $SSH_KEY_PATH
+
 #SSH_KEY_PATH="/root/.ssh/privkey"
 if [ -f "$SSH_KEY_PATH" ]; then
     echo "SSH key found at $SSH_KEY_PATH, setting correct permissions..."
