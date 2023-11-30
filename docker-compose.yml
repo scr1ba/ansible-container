@@ -1,9 +1,12 @@
 # https://github.com/abiosoft/colima/issues/500#issuecomment-1343103477
-version: '3.9'
+version: "3.9"
 services:
   ansible:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - './ansible:/ansible'
+      - "./ansible:/ansible"
+    environment:
+      - TARGET_HOSTS=127.0.0.1,10.10.0.1
+    command: /ansible/playbook.yml --extra-vars "ansible_ssh_user=scr1ba ansible_ssh_private_key_file=/ansible/.ssh/yourkey"

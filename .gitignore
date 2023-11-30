@@ -195,5 +195,6 @@ Temporary Items
 # that are supposed to be shared within teams.
 
 
+ansible/.ssh
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,webstorm+all,goland+all,visualstudiocode

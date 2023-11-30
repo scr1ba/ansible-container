@@ -1,6 +1,6 @@
 - name: Test connection to VM
   hosts: vm_inv
-  become: True
+  become: False
   tasks:
     - name: Ping remote VM
       ansible.builtin.ping:
